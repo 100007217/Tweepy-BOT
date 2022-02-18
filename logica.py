@@ -45,26 +45,27 @@ def accion_dia():
 
     #Tipo de muerte
     tipo_muerte=randrange(0,len(muertes))
+
     #print("")
     #print("Dia número: "+ str(dia))
+
     #Imprimimos la muerte
     #print("El superviviente "+ supervivientes[superviviente_afectado]+ " ha muerto"+ muertes[tipo_muerte])
+
     #Mostramos cuantos quedan  
     #print("Quedan "+ str((len(supervivientes))-1) +" supervivientes")
     
     informe="Dia número: "+ str(dia) + ". El superviviente "+ supervivientes[superviviente_afectado]+ " ha muerto"+ muertes[tipo_muerte]+". Quedan "+ str((len(supervivientes))-1) +" supervivientes"
     
+    #Eliminamos al superviviente del array
     supervivientes.pop(superviviente_afectado)
     
-    #api.update_status(status=informe)
+    api.update_status(status=informe)
     #print("tweet enviado")
     print(informe)
 
     
 schedule.every(2).seconds.do(accion_dia)
-
-
-#Eliminamos al superviviente del array
 
 while True:
 
