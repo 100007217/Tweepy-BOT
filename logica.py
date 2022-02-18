@@ -37,7 +37,7 @@ def accion_dia():
         print("Se acabó")
         return schedule.CancelJob
     
-
+    #Sumamos un dia
     dia=dia+1
 
     #Superviviente afectado
@@ -55,29 +55,21 @@ def accion_dia():
     informe="Dia número: "+ str(dia) + ". El superviviente "+ supervivientes[superviviente_afectado]+ " ha muerto"+ muertes[tipo_muerte]+". Quedan "+ str((len(supervivientes))-1) +" supervivientes"
     
     supervivientes.pop(superviviente_afectado)
-    api.update_status(status=informe)
-    print(informe)
     
+    #api.update_status(status=informe)
     #print("tweet enviado")
+    print(informe)
 
-while (len(supervivientes)>0):
-    #Sumamos un dia
     
-    #Hacemos la funcion de imprimir
-    ##schedule.every(1).minutes.do(accion_dia(dia,supervivientes,superviviente_afectado,muertes,tipo_muerte))
+schedule.every(2).seconds.do(accion_dia)
 
-    #informe=accion_dia(dia,supervivientes,superviviente_afectado,muertes,tipo_muerte)
-    #api.update_status(status)
-    
-    schedule.every(2).seconds.do(accion_dia)
-    
 
-    #Eliminamos al superviviente del array
-    
-    while True:
-  
-        # Checks whether a scheduled task 
-        # is pending to run or not
-        schedule.run_pending()
-        if not schedule.jobs:
-            break
+#Eliminamos al superviviente del array
+
+while True:
+
+    # Checks whether a scheduled task 
+    # is pending to run or not
+    schedule.run_pending()
+    if not schedule.jobs:
+        break
